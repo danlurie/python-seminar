@@ -16,11 +16,13 @@ class WelcomePage:
             <form action="greetUser" method="GET">
             What is your name?
             <input type="text" name="name" />
+            What is your favorite color?
+            <input type="text" name="color" />
             <input type="submit" />
             </form>'''
     
     @cherrypy.expose
-    def greetUser(self, name = None):
+    def greetUser(self, name = None, color = None):
         # CherryPy passes all GET and POST variables as method parameters.
         # It doesn't make a difference where the variables come from, how
         # large their contents are, and so on.
@@ -31,7 +33,7 @@ class WelcomePage:
         
         if name:
             # Greet the user!
-            return "Hey %s, what's up?" % name
+            return "<font color='{0}'>Hey {1}, what's up?".format(color, name)
         else:
             if name is None:
                 # No name was specified
